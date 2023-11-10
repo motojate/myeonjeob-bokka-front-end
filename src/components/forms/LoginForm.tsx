@@ -5,8 +5,11 @@ import {
   Container,
   CssBaseline,
   Typography,
+  ButtonProps,
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import GoogleIcon from '@mui/icons-material/Google' // MUI에서 제공하는 구글 아이콘
+import SocialLoginButtons from '../atoms/buttons/SocialLoginButton'
 
 // MUI 테마 생성
 const theme = createTheme({
@@ -97,6 +100,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           >
             로그인
           </Button>
+          <SocialLoginButtons />
         </form>
       </ThemeProvider>
     </Container>
