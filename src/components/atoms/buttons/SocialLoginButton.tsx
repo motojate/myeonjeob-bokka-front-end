@@ -9,6 +9,11 @@ const socialMediaButtons = [
   { icon: <GoogleIcon />, label: '구글 로그인', color: '#DB4437' },
   { icon: <AppleIcon />, label: '애플 로그인', color: '#000000' },
 ]
+interface SocialLoginButtonProps {
+  icon: any
+  label: string
+  color: string
+}
 
 const SocialLoginButtons = () => {
   return (
