@@ -5,11 +5,10 @@ import {
   Container,
   CssBaseline,
   Typography,
-  ButtonProps,
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import GoogleIcon from '@mui/icons-material/Google' // MUI에서 제공하는 구글 아이콘
 import SocialLoginButtons from '../atoms/buttons/SocialLoginButton'
+import FacebookIcon from '@mui/icons-material/Facebook'
 
 // MUI 테마 생성
 const theme = createTheme({
@@ -43,7 +42,11 @@ const theme = createTheme({
     },
   },
 })
-
+const socialMediaButtons: SocialLoginButtonProps[] = [
+  { icon: <FacebookIcon />, label: '페이스북 로그인', color: '#3b5998' },
+  { icon: <GoogleIcon />, label: '구글 로그인', color: '#DB4437' },
+  { icon: <AppleIcon />, label: '애플 로그인', color: '#000000' },
+]
 // 로그인 폼 타입 정의
 type LoginFormProps = {
   onLogin: (username: string, password: string) => void
@@ -100,7 +103,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           >
             로그인
           </Button>
-          <SocialLoginButtons />
+          <SocialLoginButtons
+            icon={<FacebookIcon />}
+            label="facebook"
+            color="black"
+          />
         </form>
       </ThemeProvider>
     </Container>
