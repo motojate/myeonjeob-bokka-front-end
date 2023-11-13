@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import SocialLoginButtons from '../atoms/buttons/SocialLoginButton'
-import FacebookIcon from '@mui/icons-material/Facebook'
+import GoogleIcon from '@mui/icons-material/Google'
 
 // MUI 테마 생성
 const theme = createTheme({
@@ -42,24 +42,24 @@ const theme = createTheme({
     },
   },
 })
-const socialMediaButtons: SocialLoginButtonProps[] = [
-  { icon: <FacebookIcon />, label: '페이스북 로그인', color: '#3b5998' },
-  { icon: <GoogleIcon />, label: '구글 로그인', color: '#DB4437' },
-  { icon: <AppleIcon />, label: '애플 로그인', color: '#000000' },
-]
+
 // 로그인 폼 타입 정의
 type LoginFormProps = {
   onLogin: (username: string, password: string) => void
 }
 
-// 로그인 폼 컴포넌트
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm = (props: LoginFormProps) => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    onLogin(username, password)
+    props.onLogin(username, password)
+  }
+  const googleButton = {
+    icon: <GoogleIcon />,
+    label: '구글 로그인',
+    color: '#DB4437',
   }
 
   return (
@@ -103,11 +103,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           >
             로그인
           </Button>
-          <SocialLoginButtons
-            icon={<FacebookIcon />}
-            label="facebook"
-            color="black"
-          />
+          <SocialLoginButtons {...googleButton} />
         </form>
       </ThemeProvider>
     </Container>
