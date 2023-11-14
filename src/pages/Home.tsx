@@ -1,7 +1,19 @@
 import { ThemeProvider } from '@emotion/react'
-import { createTheme, CssBaseline, Container } from '@mui/material'
-import React from 'react'
+import {
+  createTheme,
+  CssBaseline,
+  Container,
+  FormControl,
+  Button,
+  Box,
+} from '@mui/material'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
 import SplashScreenMainImageField from 'src/components/molecule/fields/SplashScreenMainImageField'
+import { NUMBER_OF_MENU_ITEMS } from 'src/constants/datas'
+import { setQuestionCount } from 'src/modules/question/questionSlice'
+import { useAppDispatch } from 'src/store'
 
 const theme = createTheme({
   components: {
@@ -23,11 +35,34 @@ const theme = createTheme({
 })
 
 const Home = () => {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const [selected, setSelected] = useState<string>(
+    NUMBER_OF_MENU_ITEMS[0].value
+  )
+
+  const handleClickButton = () => {
+    dispatch(setQuestionCount(Number(selected)))
+    navigate('/question')
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="sm">
-        <SplashScreenMainImageField />
+        <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
+          <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
+            <QuestionCountDropdown value={selected} setValue={setSelected} />
+          </FormControl>
+          <Button
+            onClick={handleClickButton}
+            variant={'outlined'}
+            sx={{ flex: 1, minWidth: 0 }}
+          >
+            오늘 문제 풀기
+          </Button>
+        </Box>
+        {/* <SplashScreenMainImageField /> */}
       </Container>
     </ThemeProvider>
   )

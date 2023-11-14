@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoute'
 import Home from 'src/pages/Home'
 import Login from 'src/pages/Login'
+import QuestionMain from 'src/pages/question/QuestionMain'
 
 const RouterConfig = () => {
   return (
@@ -10,6 +11,7 @@ const RouterConfig = () => {
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<Home />} />
+        <Route path="/question" element={<QuestionMain />} />
       </Route>
     </Routes>
   )
