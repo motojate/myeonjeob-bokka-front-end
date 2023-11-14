@@ -71,7 +71,7 @@ const QuestionMain = () => {
         </Container>
       </Box>
       <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>
-        <Toolbar>
+        <Toolbar style={{ justifyContent: 'center' }}>
           <Typography variant="h6">진행도: {`1/${state.count}`}</Typography>
         </Toolbar>
       </AppBar>
