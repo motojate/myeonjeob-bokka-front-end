@@ -6,6 +6,9 @@ import {
   FormControl,
   Button,
   Box,
+  AppBar,
+  Toolbar,
+  Typography,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +16,7 @@ import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountD
 import SplashScreenMainImageField from 'src/components/molecule/fields/SplashScreenMainImageField'
 import { NUMBER_OF_MENU_ITEMS } from 'src/constants/datas'
 import { setQuestionCount } from 'src/modules/question/questionSlice'
-import { useAppDispatch } from 'src/store'
+import { useAppDispatch, useAppSelector } from 'src/store'
 
 const theme = createTheme({
   palette: {
@@ -24,51 +27,54 @@ const theme = createTheme({
       default: '#FFFFFF',
     },
   },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          // 헤더 및 푸터 크기 조정
+          minHeight: '60px',
+        },
+      },
+    },
+  },
 })
 
 const QuestionMain = () => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const [selected, setSelected] = useState<string>(
-    NUMBER_OF_MENU_ITEMS[0].value
-  )
-
-  const handleClickButton = () => {
-    dispatch(setQuestionCount(Number(selected)))
-  }
-
+  const state = useAppSelector((state) => state.questionReducer)
+  console.log(state)
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Typography variant="h6">면접보까</Typography>
+        </Toolbar>
+      </AppBar>
       <Box
-        sx={{ height: '100vh', backgroundColor: theme.palette.primary.main }}
+        sx={{
+          height: 'calc(100vh - 120px)', // 전체 높이에서 헤더와 푸터 높이를 제외
+          backgroundColor: theme.palette.primary.main,
+        }}
       >
-        {' '}
-        {/* 전체 배경 연보라색으로 설정 */}
         <Container
           component="main"
           maxWidth="sm"
-          sx={{ backgroundColor: 'white', p: 2, borderRadius: 1, boxShadow: 1 }}
+          sx={{
+            backgroundColor: 'white',
+            p: 2,
+            borderRadius: 1,
+            boxShadow: 1,
+            height: '100%', // 컨테이너 높이를 최대로 설정
+          }}
         >
-          {' '}
-          {/* 중앙 컨테이너 흰색 배경 */}
-          {/* 중앙 내용 */}
-          <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
-            <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
-              <QuestionCountDropdown value={selected} setValue={setSelected} />
-            </FormControl>
-            <Button
-              onClick={handleClickButton}
-              variant={'outlined'}
-              sx={{ flex: 1, minWidth: 0 }}
-            >
-              오늘 문제 풀기
-            </Button>
-          </Box>
-          {/* 중앙 내용 끝 */}
+          {/* 여기에 컨텐츠 추가 */}
         </Container>
       </Box>
-      {/* 푸터가 있다면 여기에 추가 */}
+      <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+        <Toolbar>
+          <Typography variant="h6">진행도: {`1/${state.count}`}</Typography>
+        </Toolbar>
+      </AppBar>
     </ThemeProvider>
   )
 }

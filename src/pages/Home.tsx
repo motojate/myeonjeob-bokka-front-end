@@ -7,7 +7,7 @@ import {
   Button,
   Box,
 } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
 import SplashScreenMainImageField from 'src/components/molecule/fields/SplashScreenMainImageField'
