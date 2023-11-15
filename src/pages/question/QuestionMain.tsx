@@ -1,4 +1,5 @@
 import { ThemeProvider } from '@emotion/react'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import {
   createTheme,
   CssBaseline,
@@ -9,6 +10,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  MobileStepper,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -68,6 +70,15 @@ const QuestionMain = () => {
           }}
         >
           {/* 여기에 컨텐츠 추가 */}
+          <MobileStepper
+            variant="progress"
+            steps={state.count}
+            position="static"
+            activeStep={9}
+            sx={{ maxWidth: 400, flexGrow: 1 }}
+            nextButton={<></>}
+            backButton={<></>}
+          />
         </Container>
       </Box>
       <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>
