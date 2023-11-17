@@ -8,8 +8,11 @@ import {
   Toolbar,
   Typography,
   MobileStepper,
+  Button,
 } from '@mui/material'
 import { useAppSelector } from 'src/store'
+import { useState } from 'react'
+import ProgressBar from 'src/components/molecule/Bars/ProgressBar'
 
 const theme = createTheme({
   palette: {
@@ -33,7 +36,10 @@ const theme = createTheme({
 
 const QuestionMain = () => {
   const state = useAppSelector((state) => state.questionReducer)
-  console.log(state)
+  const [progress, setProgress] = useState<number>(0)
+  const handleClick = () => {
+    setProgress((state) => state + 1)
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -59,15 +65,7 @@ const QuestionMain = () => {
             height: '100%',
           }}
         >
-          <MobileStepper
-            variant="progress"
-            steps={state.count}
-            position="static"
-            activeStep={9}
-            sx={{ maxWidth: 400, flexGrow: 1 }}
-            nextButton={<></>}
-            backButton={<></>}
-          />
+          <ProgressBar progress={progress} maxBlocks={10} />
         </Container>
       </Box>
       <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>

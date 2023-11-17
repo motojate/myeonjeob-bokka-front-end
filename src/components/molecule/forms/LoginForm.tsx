@@ -7,27 +7,26 @@ import {
   Typography,
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import SocialLoginButtons from '../atoms/buttons/SocialLoginButton'
+import SocialLoginButtons from '../../atoms/buttons/SocialLoginButton'
 import GoogleIcon from '@mui/icons-material/Google'
 
-// MUI 테마 생성
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#9575cd', // 예시 색상, 원하는 색상으로 변경 가능
+      main: '#9575cd',
     },
     background: {
-      default: '#f3e5f5', // 예시 배경 색상, 원하는 색상으로 변경 가능
+      default: '#f3e5f5',
     },
   },
   typography: {
-    fontFamily: '"Comic Sans MS", cursive, sans-serif', // 원하는 폰트로 변경 가능
+    fontFamily: '"Comic Sans MS", cursive, sans-serif',
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 20, // 버튼 둥근 모서리 설정
+          borderRadius: 20,
           padding: '10px 20px',
         },
       },
@@ -35,15 +34,14 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          borderRadius: 20, // 입력 필드 둥근 모서리 설정
-          marginBottom: '10px', // 간격 설정
+          borderRadius: 20,
+          marginBottom: '10px',
         },
       },
     },
   },
 })
 
-// 로그인 폼 타입 정의
 type LoginFormProps = {
   onLogin: (username: string, password: string) => void
 }

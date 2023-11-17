@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginForm from 'src/components/forms/LoginForm'
+import LoginForm from 'src/components/molecule/forms/LoginForm'
 
 const Login = () => {
   const onLogin = (userName: string, password: string) => {
