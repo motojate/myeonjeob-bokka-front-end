@@ -42,6 +42,9 @@ const QuestionMain = () => {
   const handleClick = () => {
     setProgress((state) => state + 1)
   }
+  const submitAnswer = (answer: string) => {
+    if (answer === '1234') return setProgress((state) => state + 1)
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -64,7 +67,7 @@ const QuestionMain = () => {
           }}
         >
           <ProgressBar progress={progress} maxBlocks={10} />
-          <QuestionForm />
+          <QuestionForm submitAnswer={submitAnswer} />
         </Container>
       </Box>
       <AppBar
