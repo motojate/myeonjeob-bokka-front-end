@@ -12,12 +12,14 @@ import {
 } from '@mui/material'
 import { useAppSelector } from 'src/store'
 import { useState } from 'react'
-import ProgressBar from 'src/components/molecule/Bars/ProgressBar'
+import ProgressBar from 'src/components/molecule/progress-bars/ProgressBar'
+import ProgressHeader from 'src/components/molecule/headers/ProgressHeader'
+import QuestionForm from 'src/components/molecule/forms/QuestionForm'
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#9A7DFF',
+      main: '#D1B2FF',
     },
     background: {
       default: '#FFFFFF',
@@ -43,11 +45,7 @@ const QuestionMain = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography variant="h6">면접보까</Typography>
-        </Toolbar>
-      </AppBar>
+      <ProgressHeader progress={progress} maxProgress={state.count} />
       <Box
         sx={{
           height: 'calc(100vh - 120px)',
@@ -66,13 +64,14 @@ const QuestionMain = () => {
           }}
         >
           <ProgressBar progress={progress} maxBlocks={10} />
+          <QuestionForm />
         </Container>
       </Box>
-      <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>
-        <Toolbar style={{ justifyContent: 'center' }}>
-          <Typography variant="h6">진행도: {`1/${state.count}`}</Typography>
-        </Toolbar>
-      </AppBar>
+      <AppBar
+        position="static"
+        color="primary"
+        sx={{ top: 'auto', bottom: 0 }}
+      ></AppBar>
     </ThemeProvider>
   )
 }
