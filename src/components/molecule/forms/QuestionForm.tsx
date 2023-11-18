@@ -1,23 +1,39 @@
-import React, { useState } from 'react'
-import { TextField, Typography, Box, InputAdornment } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { TextField, Typography, Box, InputAdornment, Fade } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send'
+import questionApi from 'src/apis/questionApi'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 
 interface QuestionFormChildProps {
   submitAnswer: (answer: string) => void
 }
+interface Content {
+  answer: string
+  mode: string
+  question: string[]
+}
 
 const QuestionForm = (props: QuestionFormChildProps) => {
+  const [content, setContent] = useState<Content>({
+    answer: '',
+    mode: '',
+    question: [],
+  })
   const [answer, setAnswer] = useState<string>('')
   const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(event.target.value)
   }
+
+  useEffect(() => {
+    const result = questionApi.getQuestion()
+    setContent(result?.content)
+  }, [])
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     props.submitAnswer(answer)
   }
   return (
     <>
-      {/* 메시지 박스 */}
       <Box
         sx={{
           mx: 2, // 좌우 마진
@@ -27,26 +43,18 @@ const QuestionForm = (props: QuestionFormChildProps) => {
           borderRadius: 2, // 둥근 모서리
         }}
       >
-        <Typography variant="body1">
-          여기는 커피 한 잔과 진짜 좋은 풍경이 있는 곳이다, 안 그래? 경치가
-          끝내준다!
-        </Typography>
+        <Fade in={true}>
+          <CheckCircleOutlineIcon style={{ color: 'green' }} />
+        </Fade>
+        <Typography variant="body1"></Typography>
         <Typography
           variant="body1"
           sx={{ mt: 2, color: 'primary.main' }}
           component={'div'}
         >
-          This is a great{' '}
-          <TextField
-            variant="standard"
-            placeholder="__________"
-            value={answer}
-            InputProps={{
-              disableUnderline: true, // 밑줄 제거
-              sx: { color: 'black', borderBottom: '1px solid white' }, // 입력 필드 스타일
-            }}
-          />
-          for a cafe, isnt it? What a view!
+          {content.question.map((text) => (
+            <p key={text}>{text}</p>
+          ))}
         </Typography>
       </Box>
 
