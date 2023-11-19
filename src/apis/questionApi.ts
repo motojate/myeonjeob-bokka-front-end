@@ -12,7 +12,15 @@ const getQuestion = () => {
     },
   }
   const { code, result } = response.data
-  return result
+  if (code === 1000) return result
+  else
+    return {
+      content: {
+        mode: 'subjective',
+        answer: '1234',
+        question: ['문제 1', '내용'],
+      },
+    }
 }
 
 const questionApi = {
