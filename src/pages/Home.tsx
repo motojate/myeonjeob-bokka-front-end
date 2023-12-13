@@ -6,11 +6,13 @@ import {
   FormControl,
   Button,
   Box,
+  Snackbar,
+  Alert,
 } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
-import SplashScreenMainImageField from 'src/components/molecule/fields/SplashScreenMainImageField'
+import SplashScreenMainImageField from 'src/components/molecules/fields/SplashScreenMainImageField'
 import { NUMBER_OF_MENU_ITEMS } from 'src/constants/datas'
 import { setQuestionCount } from 'src/modules/question/questionSlice'
 import { useAppDispatch } from 'src/store'
@@ -49,6 +51,9 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Snackbar open={true} message={'hi'} autoHideDuration={1000}>
+        <Alert severity="error">This is an error message!</Alert>
+      </Snackbar>
       <Container component="main" maxWidth="sm">
         <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
           <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">

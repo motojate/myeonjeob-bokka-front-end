@@ -12,9 +12,9 @@ import {
 } from '@mui/material'
 import { useAppSelector } from 'src/store'
 import { useState } from 'react'
-import ProgressBar from 'src/components/molecule/progress-bars/ProgressBar'
-import ProgressHeader from 'src/components/molecule/headers/ProgressHeader'
-import QuestionForm from 'src/components/molecule/forms/QuestionForm'
+import ProgressBar from 'src/components/molecules/progress-bars/ProgressBar'
+import ProgressHeader from 'src/components/molecules/headers/ProgressHeader'
+import QuestionForm from 'src/components/molecules/forms/QuestionForm'
 
 const theme = createTheme({
   palette: {
