@@ -1,9 +1,11 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, createBrowserRouter } from 'react-router-dom'
 import PrivateRoutes from './PrivateRoute'
 import Home from 'src/pages/Home'
 import Login from 'src/pages/Login'
 import QuestionMain from 'src/pages/question/QuestionMain'
+
+const router = createBrowserRouter([])
 
 const RouterConfig = () => {
   return (
