@@ -1,22 +1,33 @@
 import React from 'react'
-import { Route, Routes, createBrowserRouter } from 'react-router-dom'
-import PrivateRoutes from './PrivateRoute'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from 'src/pages/Home'
 import Login from 'src/pages/Login'
 import QuestionMain from 'src/pages/question/QuestionMain'
+import PrivateRoutes from './PrivateRoute'
 
-const router = createBrowserRouter([])
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <PrivateRoutes />, // Assuming PrivateRoutes is a layout component
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: 'question',
+        element: <QuestionMain />,
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+])
 
 const RouterConfig = () => {
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route element={<PrivateRoutes />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/question" element={<QuestionMain />} />
-      </Route>
-    </Routes>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default RouterConfig
