@@ -36,11 +36,11 @@ const QuestionForm = (props: QuestionFormChildProps) => {
     <>
       <Box
         sx={{
-          mx: 2, // 좌우 마진
-          my: 4, // 상하 마진
-          p: 2, // 패딩
-          backgroundColor: '#EAEAEA', // 박스 배경색
-          borderRadius: 2, // 둥근 모서리
+          mx: 2,
+          my: 4,
+          p: 2,
+          backgroundColor: '#EAEAEA',
+          borderRadius: 2,
         }}
       >
         <Fade in={true}>
