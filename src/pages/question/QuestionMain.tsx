@@ -39,9 +39,7 @@ const theme = createTheme({
 const QuestionMain = () => {
   const state = useAppSelector((state) => state.questionReducer)
   const [progress, setProgress] = useState<number>(0)
-  const handleClick = () => {
-    setProgress((state) => state + 1)
-  }
+
   const submitAnswer = (answer: string) => {
     if (answer === '1234') return setProgress((state) => state + 1)
   }
